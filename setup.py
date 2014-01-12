@@ -7,7 +7,7 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 setup(
     name='django-fluxbb',
     version='0.1',
-    packages=['fluxbb'],
+    packages=['fluxbb', 'fluxbb.auth'],
     include_package_data=True,
     liscense='GPLv2',
     description='Django app to interface with fluxbb',

@@ -9,7 +9,7 @@ class Config(models.Model):
     Fields on this model match exactly with those defined by fluxbb, see the
     [fluxbb dbstructure](http://fluxbb.org/docs/v1.5/dbstructure#users).
     """
-    conf_name = models.CharField(max_length=255, default="")
+    conf_name = models.CharField(max_length=255, default="", primary_key=True)
     conf_value = models.TextField(blank=True, null=True, default=None)
 
     class Meta:
