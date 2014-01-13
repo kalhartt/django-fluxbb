@@ -1,3 +1,13 @@
+"""
+:mod:`fluxbb.auth` --- FluxBB Authentication Utilities
+======================================================
+
+.. module:: fluxbb
+    :synopsis: p
+
+This module provides tools for using :mod:`fluxbb` as an authentication backend
+and user model.
+"""
 from django.contrib.auth import get_user_model
 from fluxbb.functions import authenticate_user
 from fluxbb.models import Users

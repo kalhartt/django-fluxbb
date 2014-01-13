@@ -1,0 +1,33 @@
+- model: fluxbb.Categories
+    pk: 1
+    fields:
+        cat_name: Test category
+        disp_position: 1
+- model: fluxbb.Config
+    fields:
+        conf_name: o_cur_version
+        conf_value: 1.5.6
+- model: fluxbb.Config
+    fields:
+        conf_name: o_cur_version
+        conf_value: 1.5.6
+- model: fluxbb.Config
+    fields:
+        conf_name: o_cur_version
+        conf_value: 1.5.6
+- model: fluxbb.Config
+    fields:
+        conf_name: o_cur_version
+        conf_value: 1.5.6
+- model: fluxbb.Config
+    fields:
+        conf_name: o_cur_version
+        conf_value: 1.5.6
+- model: fluxbb.Config
+    fields:
+        conf_name: o_cur_version
+        conf_value: 1.5.6
+- model: fluxbb.Config
+    fields:
+        conf_name: o_cur_version
+        conf_value: 1.5.6

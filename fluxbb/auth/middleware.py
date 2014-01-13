@@ -45,7 +45,7 @@ class FluxBBSessionMiddleware(object):
             response: The view generated HttpResponse
 
         Returns:
-            None
+            The same HttpResponse with an updated cookie if necessary.
         """
         user = getattr(request, _useratt, None)
         if user:

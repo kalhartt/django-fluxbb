@@ -1,6 +1,6 @@
 from django.db import models
 from fluxbb import FLUXBB_PREFIX
-from fluxbb_fields import UnixTimestampField
+from .fluxbb_fields import UnixTimestampField
 
 
 class Online(models.Model):

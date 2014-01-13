@@ -1,5 +1,12 @@
 """
-Package for django integration with fluxbb forum
+:mod:`fluxbb` --- Package for django integration with fluxbb forum
+==================================================================
+
+.. module:: fluxbb
+    :synopsis: p
+
+This module provides useful tools for integrating a fluxbb forum with a django
+website.
 """
 import time
 from django.conf import settings

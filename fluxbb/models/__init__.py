@@ -1,3 +1,16 @@
+"""
+:mod:`fluxbb.models` --- Models wrapping the FluxBB database
+------------------------------------------------------------
+
+This module provides access to all of the FluxBB tables as Django models.
+
+.. note::
+    Some of FluxBB's tables use composite primary keys, which Django does not
+    support. The models for these tables have an auto-incrementing primary key
+    field added. To include these models, you must manually modify your
+    database to add this column. Then let fluxbb know by setting
+    ``FLUXBB_COMPOSITEKEYFIX = True`` in your settings.py.
+"""
 from .bans import Bans
 from .categories import Categories
 from .censoring import Censoring

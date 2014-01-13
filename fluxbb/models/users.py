@@ -4,7 +4,7 @@ from django.core.mail import send_mail
 from django.db import models
 from django.utils import timezone
 from fluxbb import FLUXBB_PREFIX
-from fluxbb_fields import UnixTimestampField
+from .fluxbb_fields import UnixTimestampField
 import hashlib
 
 _null = {'blank': True, 'null': True, 'default': None}
