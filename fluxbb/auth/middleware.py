@@ -47,6 +47,7 @@ class FluxBBSessionMiddleware(object):
         Returns:
             None
         """
-        user = getattr(response, _useratt, None)
+        user = getattr(request, _useratt, None)
         if user:
             pun_setcookie(user.id, user.password)
+        return response
