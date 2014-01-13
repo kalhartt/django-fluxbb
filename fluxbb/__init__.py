@@ -5,7 +5,7 @@ import time
 from django.conf import settings
 
 # The table prefix used by the models
-FLUXBB_PREFIX = getattr(settings, 'FLUXBB_PREFIX', '')
+FLUXBB_PREFIX = getattr(settings, 'FLUXBB_PREFIX', 'fluxbb_')
 FLUXBB_COMPOSITEKEYFIX = getattr(settings, 'FLUXBB_COMPOSITEKEYFIX', False)
 FLUXBB_COOKIE_SEED = getattr(settings, 'FLUXBB_COOKIE_SEED', '')
 FLUXBB_COOKIE_NAME = getattr(settings, 'FLUXBB_COOKIE_NAME', 'pun_cookie')
