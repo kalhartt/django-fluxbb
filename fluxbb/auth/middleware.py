@@ -9,8 +9,8 @@ else:
     _useratt = 'fluxbb_user'
 
 
-class FluxBBSessionManager(object):
-    """FluxBB Session Manager
+class FluxBBSessionMiddleware(object):
+    """FluxBB Session Middleware
 
     Session manager for reading and manipulating the FluxBB authentication
     cookie. If your application uses ``fluxbb.Users`` as its
