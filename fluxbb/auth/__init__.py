@@ -10,9 +10,9 @@ and user model.
 """
 from django.contrib.auth import get_user_model
 from fluxbb.functions import authenticate_user
-from fluxbb.models import Users
+from fluxbb.models import FluxBBUser
 
-if get_user_model() is Users:
+if get_user_model() is FluxBBUser:
     _useratt = 'user'
 else:
     _useratt = 'fluxbb_user'
@@ -33,10 +33,10 @@ def authenticate(username=None, password=None):
         Otherwise ``None`` is returned.
     """
     try:
-        user = Users.objects.get(username=username)
+        user = FluxBBUser.objects.get(username=username)
         if authenticate_user(user, password):
             return user
-    except Users.DoesNotExist:
+    except FluxBBUser.DoesNotExist:
         pass
     return None
 

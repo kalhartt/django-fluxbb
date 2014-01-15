@@ -1,5 +1,5 @@
 """
-FluxBB SearchMatches Model
+FluxBB ForumPermissions Model
 
 This table uses a composite primary key which django currently does not
 support, see the [discussion
@@ -18,19 +18,21 @@ from django.db import models
 from fluxbb import FLUXBB_PREFIX
 
 
-class SearchMatches(models.Model):
+class ForumPermission(models.Model):
     """
-    FluxBB Search Matches
+    FluxBB Forum Permissions
 
     Fields on this model match exactly with those defined by fluxbb, see the
     [fluxbb dbstructure](http://fluxbb.org/docs/v1.5/dbstructure#users).
     """
     id = models.AutoField(primary_key=True)
-    post = models.ForeignKey('fluxbb.Posts', db_constraint=False)
-    word = models.ForeignKey('fluxbb.SearchWords', db_constraint=False)
-    subject_match = models.BooleanField(default=False)
+    group = models.ForeignKey('fluxbb.FluxBBGroup', db_constraint=False)
+    forum = models.ForeignKey('fluxbb.Forum', db_constraint=False)
+    read_forum = models.BooleanField(default=True)
+    post_replies = models.BooleanField(default=True)
+    post_topics = models.BooleanField(default=True)
 
     class Meta:
         app_label = 'fluxbb'
-        db_table = FLUXBB_PREFIX + 'search_matches'
-        unique_together = ('post', 'word')
+        db_table = FLUXBB_PREFIX + 'forum_perms'
+        unique_together = ('group', 'forum')

@@ -1,5 +1,5 @@
 """
-FluxBB ForumSubscriptions Model
+FluxBB SearchMatches Model
 
 This table uses a composite primary key which django currently does not
 support, see the [discussion
@@ -18,13 +18,19 @@ from django.db import models
 from fluxbb import FLUXBB_PREFIX
 
 
-class ForumSubscriptions(models.Model):
-    """FluxBB Forum Subscriptions"""
+class SearchMatch(models.Model):
+    """
+    FluxBB Search Match
+
+    Fields on this model match exactly with those defined by fluxbb, see the
+    [fluxbb dbstructure](http://fluxbb.org/docs/v1.5/dbstructure#users).
+    """
     id = models.AutoField(primary_key=True)
-    user = models.ForeignKey('fluxbb.Users', db_constraint=False)
-    forum = models.ForeignKey('fluxbb.Forums', db_constraint=False)
+    post = models.ForeignKey('fluxbb.Post', db_constraint=False)
+    word = models.ForeignKey('fluxbb.SearchWord', db_constraint=False)
+    subject_match = models.BooleanField(default=False)
 
     class Meta:
         app_label = 'fluxbb'
-        db_table = FLUXBB_PREFIX + 'forum_subscriptions'
-        unique_together = ('user', 'forum')
+        db_table = FLUXBB_PREFIX + 'search_matches'
+        unique_together = ('post', 'word')

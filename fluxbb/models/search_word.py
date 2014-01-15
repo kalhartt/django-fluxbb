@@ -2,9 +2,9 @@ from django.db import models
 from fluxbb import FLUXBB_PREFIX
 
 
-class SearchWords(models.Model):
+class SearchWord(models.Model):
     """
-    FluxBB Search Words
+    FluxBB Search Word
 
     Fields on this model match exactly with those defined by fluxbb, see the
     [fluxbb dbstructure](http://fluxbb.org/docs/v1.5/dbstructure#users).

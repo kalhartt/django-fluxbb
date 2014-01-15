@@ -3,9 +3,9 @@ from fluxbb import FLUXBB_PREFIX
 from .fluxbb_fields import UnixTimestampField
 
 
-class Topics(models.Model):
+class Topic(models.Model):
     """
-    FluxBB Topics
+    FluxBB Topic
 
     Fields on this model match with those defined by fluxbb, see the
     [fluxbb dbstructure](http://fluxbb.org/docs/v1.5/dbstructure#users).
@@ -18,9 +18,9 @@ class Topics(models.Model):
     poster = models.CharField(max_length=200, default="")
     subject = models.CharField(max_length=255, default="")
     posted = models.IntegerField(max_length=10, default=0)
-    first_post = models.ForeignKey('fluxbb.Posts', related_name='first_post',
+    first_post = models.ForeignKey('fluxbb.Post', related_name='first_post',
                                    db_constraint=False)
-    last_post = models.ForeignKey('fluxbb.Posts', related_name='last_post',
+    last_post = models.ForeignKey('fluxbb.Post', related_name='last_post',
                                   db_constraint=False)
     last_post_time = UnixTimestampField(db_column='last_post')
     last_poster = models.CharField(max_length=200, blank=True, null=True,
@@ -32,10 +32,10 @@ class Topics(models.Model):
 
     closed = models.BooleanField(default=False)
     sticky = models.BooleanField(default=False)
-    moved_to = models.ForeignKey('fluxbb.Topics', db_column='moved_to',
+    moved_to = models.ForeignKey('fluxbb.Topic', db_column='moved_to',
                                  db_constraint=False, blank=True, null=True,
                                  default=None)
-    forum = models.ForeignKey('fluxbb.Forums', db_constraint=False)
+    forum = models.ForeignKey('fluxbb.Forum', db_constraint=False)
 
     class Meta:
         app_label = 'fluxbb'

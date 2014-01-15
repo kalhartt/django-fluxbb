@@ -4,9 +4,9 @@ from fluxbb import FLUXBB_PREFIX
 _null = {'blank': True, 'null': True, 'default': None}
 
 
-class Groups(models.Model):
+class FluxBBGroup(models.Model):
     """
-    FluxBB Groups
+    FluxBB FluxBBGroup
 
     Fields on this model match exactly with those defined by fluxbb, see the
     [fluxbb dbstructure](http://fluxbb.org/docs/v1.5/dbstructure#users).

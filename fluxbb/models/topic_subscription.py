@@ -18,11 +18,11 @@ from django.db import models
 from fluxbb import FLUXBB_PREFIX
 
 
-class TopicSubscriptions(models.Model):
-    """FluxBB Topic Subscriptions"""
+class TopicSubscription(models.Model):
+    """FluxBB Topic Subscription"""
     id = models.AutoField(primary_key=True)
-    user = models.ForeignKey('fluxbb.Users', db_constraint=False)
-    topic = models.ForeignKey('fluxbb.Topics', db_constraint=False)
+    user = models.ForeignKey('fluxbb.FluxBBUser', db_constraint=False)
+    topic = models.ForeignKey('fluxbb.Topic', db_constraint=False)
 
     class Meta:
         app_label = 'fluxbb'

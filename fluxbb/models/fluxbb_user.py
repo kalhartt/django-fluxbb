@@ -1,5 +1,6 @@
+from django.conf import settings
 from django.contrib import auth
-from django.contrib.auth.models import BaseUserManager, Group, Permission
+from django.contrib.auth.models import BaseUserManager
 from django.core.mail import send_mail
 from django.db import models
 from django.utils import timezone
@@ -7,6 +8,9 @@ from fluxbb import FLUXBB_PREFIX
 from .fluxbb_fields import UnixTimestampField
 import hashlib
 
+# True if the user model has been swapped for fluxbb.FluxBBUser
+_user = getattr(settings, 'AUTH_USER_MODEL', '') == 'fluxbb.FluxBBUser'
+_user = 'user' if _user else 'fluxbb_user'
 _null = {'blank': True, 'null': True, 'default': None}
 
 
@@ -50,9 +54,9 @@ class FluxBBUserManager(BaseUserManager):
         return user
 
 
-class Users(models.Model):
+class FluxBBUser(models.Model):
     """
-    FluxBB User Model
+    FluxBB FluxBBUser Model
 
     This user model should have all the extras needed to use as a custom user
     model by adding `AUTH_USER_MODEL = 'fluxbb.Users'`. It supports the
@@ -61,15 +65,10 @@ class Users(models.Model):
     Since FluxBB uses 1-to-1 user/group relations for determining
     active/user/superuser status, the normal django user methods can have
     unexpected consequences. See their documentation on this model for details.
-
-    Fields on this model match exactly with those defined by fluxbb, see the
-    [fluxbb dbstructure](http://fluxbb.org/docs/v1.5/dbstructure#users).
-    All fields defined as `tinyint(1)` are considered BooleanFields and any
-    `int(10)` field representing a timestamp is a datetime field implemented
-    by a UnixTimestampField.
     """
     id = models.AutoField(primary_key=True)
-    group = models.ForeignKey('fluxbb.Groups', db_constraint=False, default=0)
+    group = models.ForeignKey('fluxbb.FluxBBGroup', db_constraint=False,
+                              default=0)
     username = models.CharField(max_length=200, unique=True)
     password = models.CharField(max_length=40)
     email = models.EmailField(max_length=80)
@@ -110,12 +109,12 @@ class Users(models.Model):
     activate_string = models.CharField(max_length=80, **_null)
     activate_key = models.CharField(max_length=8, **_null)
 
-    # Not part of the FluxBB definition
-    groups = models.ManyToManyField(Group, blank=True, related_name="user_set",
-                                    related_query_name="user")
-    user_permissions = models.ManyToManyField(Permission, blank=True,
-                                              related_name="user_set",
-                                              related_query_name="user")
+    groups = models.ManyToManyField(
+        'auth.Group', blank=True, related_name=_user + "_set",
+        related_query_name=_user)
+    user_permissions = models.ManyToManyField(
+        'auth.Permission', blank=True, related_name=_user + "_set",
+        related_query_name=_user)
 
     objects = FluxBBUserManager()
     USERNAME_FIELD = 'username'

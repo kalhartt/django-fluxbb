@@ -10,7 +10,7 @@ class Online(models.Model):
     Fields on this model match exactly with those defined by fluxbb, see the
     [fluxbb dbstructure](http://fluxbb.org/docs/v1.5/dbstructure#users).
     """
-    user = models.ForeignKey('fluxbb.Users', db_constraint=False)
+    user = models.ForeignKey('fluxbb.FluxBBUser', db_constraint=False)
     ident = models.CharField(max_length=200, primary_key=True, unique=True)
     logged = UnixTimestampField(auto_now_add=True)
     idle = models.BooleanField()

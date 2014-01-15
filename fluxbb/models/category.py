@@ -2,12 +2,14 @@ from django.db import models
 from fluxbb import FLUXBB_PREFIX
 
 
-class Categories(models.Model):
+class Category(models.Model):
     """
-    FluxBB Categories
+    FluxBB Category
 
-    Fields on this model match exactly with those defined by fluxbb, see the
-    [fluxbb dbstructure](http://fluxbb.org/docs/v1.5/dbstructure#users).
+    Model Fields:
+        id (int): Auto incrementing primary key for the model
+        cat_name (str): Name of the category
+        disp_position (int): Positon of the category in relation to the others
     """
     id = models.AutoField(primary_key=True)
     cat_name = models.CharField(max_length=80, default="New Category")

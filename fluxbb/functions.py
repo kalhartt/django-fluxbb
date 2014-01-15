@@ -4,7 +4,7 @@ import hmac
 import re
 import time
 from fluxbb import FLUXBB_COOKIE_SEED, FLUXBB_COOKIE_NAME, pun_config
-from fluxbb.models import Users
+from fluxbb.models import FluxBBUser
 
 _COOKIE_RE = re.compile(r'(?P<user_id>\d+)%7C'
                         r'(?P<password_hash>[0-9a-fA-F]+)%7C'
@@ -26,9 +26,9 @@ def check_cookie(cookie):
     try:
         # parse the cookie string
         cookie = _COOKIE_RE.match(cookie).groupdict()
-        user = Users.objects.get(pk=int(cookie['user_id']))
+        user = FluxBBUser.objects.get(pk=int(cookie['user_id']))
         expiration = int(cookie['expiration_time'])
-    except (AttributeError, KeyError, Users.DoesNotExist):
+    except (AttributeError, KeyError, FluxBBUser.DoesNotExist):
         # cookie not set or invalid
         return None
 
@@ -56,7 +56,7 @@ def authenticate_user(user, password, password_is_hash=False):
     """Authenticate a user
 
     Args:
-        user (str): Users instance of the user to authenticate
+        user (FluxBBUser): Users instance of the user to authenticate
         password (str): Password (or password hash) to verify
         password_is_hash (bool): (Optional) If true, password is assumed to
             already be hashed. Defaults to ``False``.

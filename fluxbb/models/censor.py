@@ -2,12 +2,14 @@ from django.db import models
 from fluxbb import FLUXBB_PREFIX
 
 
-class Censoring(models.Model):
+class Censor(models.Model):
     """
-    FluxBB Censoring
+    FluxBB Censor
 
-    Fields on this model match exactly with those defined by fluxbb, see the
-    [fluxbb dbstructure](http://fluxbb.org/docs/v1.5/dbstructure#users).
+    Model Fields:
+        id (int): Auto incrementing primary key for the model
+        search_for (str): The term to search for
+        replace_with (str): The term to replace with
     """
     id = models.AutoField(primary_key=True)
     search_for = models.CharField(max_length=60, default="")

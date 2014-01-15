@@ -11,29 +11,29 @@ This module provides access to all of the FluxBB tables as Django models.
     database to add this column. Then let fluxbb know by setting
     ``FLUXBB_COMPOSITEKEYFIX = True`` in your settings.py.
 """
-from .bans import Bans
-from .categories import Categories
-from .censoring import Censoring
-from .config import Config
-from .forums import Forums
-from .groups import Groups
-from .online import Online
-from .posts import Posts
-from .reports import Reports
-from .search_cache import SearchCache
-from .search_words import SearchWords
-from .topics import Topics
-from .users import Users, FluxBBUserManager
 from fluxbb import FLUXBB_COMPOSITEKEYFIX
-
-__all__ = ['Bans', 'Categories', 'Censoring', 'Config', 'Forums', 'Groups',
-           'Online', 'Posts', 'Reports', 'SearchCache', 'SearchWords',
-           'Topics', 'Users', 'FluxBBUserManager']
+from .ban import Ban
+from .category import Category
+from .censor import Censor
+from .config import Config
+from .forum import Forum
+from .fluxbb_group import FluxBBGroup
+from .fluxbb_user import FluxBBUser as FluxBBUser
+from .fluxbb_user import FluxBBUserManager
+from .online import Online
+from .post import Post
+from .report import Report
+from .search_cache import SearchCache
+from .search_word import SearchWord
+from .topic import Topic
+__all__ = ['Ban', 'Category', 'Censor', 'Config', 'Forum', 'FluxBBGroup',
+           'Online', 'Post', 'Report', 'SearchCache', 'SearchWord',
+           'Topic', 'FluxBBUser', 'FluxBBUserManager']
 
 if FLUXBB_COMPOSITEKEYFIX:
-    from .forum_perms import ForumPermissions
-    from .forum_subscriptions import ForumSubscriptions
-    from .search_matches import SearchMatches
-    from .topic_subscriptions import TopicSubscriptions
-    __all__ += ('ForumPermissions', 'ForumSubscriptions', 'SearchMatches',
-                'TopicSubscriptions')
+    from .forum_permission import ForumPermission
+    from .forum_subscription import ForumSubscription
+    from .search_match import SearchMatch
+    from .topic_subscription import TopicSubscription
+    __all__ += ('ForumPermission', 'ForumSubscription', 'SearchMatch',
+                'TopicSubscription')
